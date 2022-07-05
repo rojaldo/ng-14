@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ng14';
+  display = '';
+
+  handleClick(value: number | string) {
+    this.display += value.toString();
+  }
 }
