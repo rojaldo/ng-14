@@ -24,7 +24,7 @@ export class HeroesComponent implements OnInit {
   }
 
   removeHero(index: number) {
-    this.service.removeHero(index);
+   this.service.removeHero(index);
   }
 
   getHeroes() {

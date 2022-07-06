@@ -17,5 +17,9 @@ export class Hero {
     set description(value) {
         this._description = value;
     }
+
+    clone(): Hero {
+        return new Hero(this.name, this.description);
+    }
     
 }
