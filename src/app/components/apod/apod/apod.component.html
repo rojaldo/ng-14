@@ -6,8 +6,11 @@
         <h1 class="display-3">{{apod.title}}</h1>
         <p class="lead">{{apod.date}}</p>
         <div class="container-fluid d-flex">
-            <img [src]="apod.url" [alt]="apod.title" class="mx-auto" *ngIf="apod.media_type === 'image'">
-            <youtube-player [videoId]="getVideoID()" *ngIf="apod.media_type === 'video'" class="mx-auto"></youtube-player>
+            <img [src]="apod.url" [alt]="apod.title" class="mx-auto" *ngIf="apod.isImage()">
+            <youtube-player [videoId]="apod.getVideoID()" *ngIf="apod.isVideo()" class="mx-auto"></youtube-player>
+            <div class="alert alert-danger mx-auto" role="alert" *ngIf="!apod.isValid()">
+                <strong>Not valid Media</strong>
+            </div>
         </div>
         <hr class="my-2">
         <p>{{apod.explanation}}</p>

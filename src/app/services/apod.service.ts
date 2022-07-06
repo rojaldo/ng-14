@@ -1,14 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { Apod } from '../models/apod';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApodService {
 
-  apod: any = {};
-  apod$ = new BehaviorSubject<any>(this.apod);
+  private _apod!: Apod;
+  apod$ = new BehaviorSubject<any>(this._apod);
 
   readonly apodUrl = 'https://api.nasa.gov/planetary/apod?api_key=';
   readonly key = 'DEMO_KEY';
@@ -24,8 +25,8 @@ export class ApodService {
     const observer = {
       next: (data: any) => {
         console.log(data);
-        this.apod = data;
-        this.apod$.next(this.apod);
+        this._apod = new Apod(data);
+        this.apod$.next(this._apod);
       },
       error: (err: any) => {
         console.error(err);

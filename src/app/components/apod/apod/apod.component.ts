@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Apod } from 'src/app/models/apod';
 import { ApodService } from 'src/app/services/apod.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { ApodService } from 'src/app/services/apod.service';
 })
 export class ApodComponent implements OnInit {
 
-  apod: any = {};
+  apod!: Apod;
 
   apiLoaded = false;
 
@@ -40,14 +41,5 @@ export class ApodComponent implements OnInit {
     
   }
 
-  getVideoID() {
-    if (this.apod.media_type === 'video') {
-      console.log(this.apod.url);
-      var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
-      var match = this.apod.url.match(regExp);
-      return (match&&match[7].length==11)? match[7] : false;
-    }
-    return null;
-  }
 
 }
