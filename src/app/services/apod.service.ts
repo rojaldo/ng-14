@@ -15,8 +15,12 @@ export class ApodService {
 
   constructor(private http: HttpClient) { }
 
-  getApod() {
+  getApod(strDate?: string) {
 
+    let url = this.apodUrl + this.key;
+    if (strDate) {
+      url += '&date=' + strDate;
+    }
     const observer = {
       next: (data: any) => {
         console.log(data);
@@ -31,6 +35,6 @@ export class ApodService {
       }
     }
 
-    this.http.get(this.apodUrl + this.key).subscribe(observer);
+    this.http.get(url).subscribe(observer);
   }
 }

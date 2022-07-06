@@ -10,13 +10,44 @@ export class ApodComponent implements OnInit {
 
   apod: any = {};
 
+  apiLoaded = false;
+
+  selectedDate = {year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate()};
+
   constructor(private service: ApodService) { }
 
   ngOnInit(): void {
+    if (!this.apiLoaded) {
+      // This code loads the IFrame Player API code asynchronously, according to the instructions at
+      // https://developers.google.com/youtube/iframe_api_reference#Getting_Started
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.body.appendChild(tag);
+      this.apiLoaded = true;
+    }
+
     this.service.apod$.subscribe(value => {
       this.apod = value
     });
     this.service.getApod();
+  }
+
+  handleDateChange() {
+    console.log(this.selectedDate);
+    // get string from date
+    let strDate = this.selectedDate.year + '-' + this.selectedDate.month + '-' + this.selectedDate.day;
+    this.service.getApod(strDate);
+    
+  }
+
+  getVideoID() {
+    if (this.apod.media_type === 'video') {
+      console.log(this.apod.url);
+      var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+      var match = this.apod.url.match(regExp);
+      return (match&&match[7].length==11)? match[7] : false;
+    }
+    return null;
   }
 
 }
