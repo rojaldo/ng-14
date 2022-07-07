@@ -1,12 +1,8 @@
 import { Options } from '@angular-slider/ngx-slider';
 import { Component, OnInit } from '@angular/core';
 import { Beer } from 'src/app/models/beer';
+import { Order } from 'src/app/models/order';
 import { BeersService } from 'src/app/services/beers.service';
-
-enum Order {
-  ALPHABETICAL,
-  ABV,
-}
 
 @Component({
   selector: 'app-beers',
@@ -18,18 +14,12 @@ export class BeersComponent implements OnInit {
   beers: Beer[] = [];
   filteredBeers: Beer[] = [];
 
-  minValue: number = 4;
-  maxValue: number = 6;
-  options: Options = {
-    floor: 0,
-    ceil: 60,
-    step: 0.1,
-  };
-
-  ascendent = true;
-  order = Order.ALPHABETICAL;
-  orderStr = 'Alphabetical';
-  ascendentStr = 'Ascendent';
+  selection: any = {
+    order: Order.ALPHABETICAL,
+    ascendent: true,
+    minValue: 4,
+    maxValue: 6
+  }
 
   counter = 0;
 
@@ -49,51 +39,32 @@ export class BeersComponent implements OnInit {
 
     this.filteredBeers =
       this.beers
-        .filter(beer => beer.abv >= this.minValue && beer.abv <= this.maxValue)
+        .filter(beer => beer.abv >= this.selection.minValue && beer.abv <= this.selection.maxValue)
         .sort((a, b) => {
-          switch (this.order) {
+          switch (this.selection.order) {
             case Order.ALPHABETICAL:
-              if (this.ascendent) {
+              if (this.selection.ascendent) {
                 return a.name.localeCompare(b.name);
               } else {
                 return b.name.localeCompare(a.name);
               }
             case Order.ABV:
-              if (this.ascendent) {
+              if (this.selection.ascendent) {
                 return a.abv - b.abv;
               } else {
                 return b.abv - a.abv;
               }
           }
+          return 0;
         });
 
   }
 
-  handleChange() {
+  handleChange(selection: any) {
+    this.selection = selection;
     this.getFilteredBeers();
   }
 
-  handleOrder(order: Order) {
-    switch (order) {
-      case Order.ALPHABETICAL:
-        this.order = Order.ALPHABETICAL;
-        this.orderStr = 'Alphabetical';
-        break;
-      case Order.ABV:
-        this.order = Order.ABV;
-        this.orderStr = 'ABV';
-        break;
-    }
-    this.getFilteredBeers();
-
-  }
-
-  handleAscendent(asc: boolean) {
-    this.ascendent = asc;
-    this.ascendentStr = asc ? 'Ascendent' : 'Descendent';
-    this.getFilteredBeers();
-
-  }
 
 
 }
