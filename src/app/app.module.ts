@@ -16,6 +16,8 @@ import { ApodComponent } from './components/apod/apod/apod.component';
 import { HttpClientModule } from '@angular/common/http';
 import {YouTubePlayerModule} from '@angular/youtube-player';
 import { BeersComponent } from './components/beers/beers/beers.component';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+
 
 
 @NgModule({
@@ -35,7 +37,8 @@ import { BeersComponent } from './components/beers/beers/beers.component';
     NgbModule,
     FormsModule,
     HttpClientModule,
-    YouTubePlayerModule
+    YouTubePlayerModule,
+    NgxSliderModule
   ],
   providers: [CalculatorService, HeroesService],
   bootstrap: [AppComponent]
