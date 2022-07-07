@@ -3,6 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { Beer } from 'src/app/models/beer';
 import { BeersService } from 'src/app/services/beers.service';
 
+enum Order {
+  ALPHABETICAL,
+  ABV,
+}
+
 @Component({
   selector: 'app-beers',
   templateUrl: './beers.component.html',
@@ -21,6 +26,11 @@ export class BeersComponent implements OnInit {
     step: 0.1,
   };
 
+  ascendent = true;
+  order = Order.ALPHABETICAL;
+  orderStr = 'Alphabetical';
+  ascendentStr = 'Ascendent';
+
   counter = 0;
 
   constructor(private service: BeersService) { }
@@ -36,12 +46,54 @@ export class BeersComponent implements OnInit {
   getFilteredBeers() {
     console.log('getFilteredBeers: ' + this.counter);
     this.counter++;
-    
-    this.filteredBeers = this.beers.filter(beer => beer.abv >= this.minValue && beer.abv <= this.maxValue);
+
+    this.filteredBeers =
+      this.beers
+        .filter(beer => beer.abv >= this.minValue && beer.abv <= this.maxValue)
+        .sort((a, b) => {
+          switch (this.order) {
+            case Order.ALPHABETICAL:
+              if (this.ascendent) {
+                return a.name.localeCompare(b.name);
+              } else {
+                return b.name.localeCompare(a.name);
+              }
+            case Order.ABV:
+              if (this.ascendent) {
+                return a.abv - b.abv;
+              } else {
+                return b.abv - a.abv;
+              }
+          }
+        });
+
   }
 
   handleChange() {
     this.getFilteredBeers();
   }
+
+  handleOrder(order: Order) {
+    switch (order) {
+      case Order.ALPHABETICAL:
+        this.order = Order.ALPHABETICAL;
+        this.orderStr = 'Alphabetical';
+        break;
+      case Order.ABV:
+        this.order = Order.ABV;
+        this.orderStr = 'ABV';
+        break;
+    }
+    this.getFilteredBeers();
+
+  }
+
+  handleAscendent(asc: boolean) {
+    this.ascendent = asc;
+    this.ascendentStr = asc ? 'Ascendent' : 'Descendent';
+    this.getFilteredBeers();
+
+  }
+
 
 }
