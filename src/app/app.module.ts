@@ -15,6 +15,7 @@ import { HeroesService } from './services/heroes.service';
 import { ApodComponent } from './components/apod/apod/apod.component';
 import { HttpClientModule } from '@angular/common/http';
 import {YouTubePlayerModule} from '@angular/youtube-player';
+import { BeersComponent } from './components/beers/beers/beers.component';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {YouTubePlayerModule} from '@angular/youtube-player';
     HeroesComponent,
     HeroesListComponent,
     HeroFormComponent,
-    ApodComponent
+    ApodComponent,
+    BeersComponent
   ],
   imports: [
     BrowserModule,
