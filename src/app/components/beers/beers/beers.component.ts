@@ -21,12 +21,11 @@ export class BeersComponent implements OnInit {
   }
 
 
-  constructor(private service: BeersService) { }
+  constructor(public service: BeersService) { }
 
   ngOnInit(): void {
     this.service.beers$.subscribe(beers => {
       this.beers = beers;
-      // this.getFilteredBeers();
     })
     this.service.getBeers();
   }
@@ -34,7 +33,6 @@ export class BeersComponent implements OnInit {
   
   handleChange(selection: any) {
     this.selection = selection;
-    // this.getFilteredBeers();
   }
 
 
