@@ -5,7 +5,7 @@
             <div class="card-body">
                 <h4 class="card-title">{{beer.name}}</h4>
                 <p class="card-text">{{beer.tagline}}</p>
-                <p class="card-text">{{beer.abv | currency}}</p>
+                <p class="card-text">{{beer.abv | abv : max}}</p>
             </div>
         </div>
     </div>

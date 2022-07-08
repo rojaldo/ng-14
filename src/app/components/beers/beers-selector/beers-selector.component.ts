@@ -1,6 +1,7 @@
 import { Options } from '@angular-slider/ngx-slider';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Order } from 'src/app/models/order';
+import { SharedDataService } from 'src/app/services/shared-data.service';
 
 @Component({
   selector: 'app-beers-selector',
@@ -25,9 +26,10 @@ export class BeersSelectorComponent implements OnInit {
   ascendentStr = 'Ascendent';
 
 
-  constructor() { }
+  constructor(private dataService: SharedDataService) { }
 
   ngOnInit(): void {
+    this.options.ceil = this.dataService.max;
   }
 
   handleChange() {

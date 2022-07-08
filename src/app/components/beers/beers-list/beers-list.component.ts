@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { Beer } from 'src/app/models/beer';
 import { Order } from 'src/app/models/order';
+import { SharedDataService } from 'src/app/services/shared-data.service';
 
 @Component({
   selector: 'app-beers-list',
@@ -18,20 +19,17 @@ export class BeersListComponent implements OnInit, OnChanges, OnDestroy {
   };
 
   filteredBeers: Beer[] = [];
+
+  max = 0;
   
-  counter = 0;
-
-  constructor() { }
-
+  constructor(private dataService: SharedDataService) { }
 
   ngOnInit(): void {
     console.log('ngOnInit');
-    
+    this.max = this.dataService.max;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('ngOnChanges');
-    console.log(changes);
     if(changes['beers'] || changes['selection']) {
       this.filteredBeers = this.getFilteredBeers();
     }
@@ -43,8 +41,6 @@ export class BeersListComponent implements OnInit, OnChanges, OnDestroy {
 
 
   getFilteredBeers(): Beer[] {
-    console.log('getFilteredBeers: ' + this.counter);
-    this.counter++;
 
     return this.beers
         .filter(beer => beer.abv >= this.selection.minValue && beer.abv <= this.selection.maxValue)
