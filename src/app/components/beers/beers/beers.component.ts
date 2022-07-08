@@ -12,7 +12,6 @@ import { BeersService } from 'src/app/services/beers.service';
 export class BeersComponent implements OnInit {
 
   beers: Beer[] = [];
-  filteredBeers: Beer[] = [];
 
   selection: any = {
     order: Order.ALPHABETICAL,
@@ -21,48 +20,21 @@ export class BeersComponent implements OnInit {
     maxValue: 6
   }
 
-  counter = 0;
 
   constructor(private service: BeersService) { }
 
   ngOnInit(): void {
     this.service.beers$.subscribe(beers => {
       this.beers = beers;
-      this.getFilteredBeers();
+      // this.getFilteredBeers();
     })
     this.service.getBeers();
   }
 
-  getFilteredBeers() {
-    console.log('getFilteredBeers: ' + this.counter);
-    this.counter++;
-
-    this.filteredBeers =
-      this.beers
-        .filter(beer => beer.abv >= this.selection.minValue && beer.abv <= this.selection.maxValue)
-        .sort((a, b) => {
-          switch (this.selection.order) {
-            case Order.ALPHABETICAL:
-              if (this.selection.ascendent) {
-                return a.name.localeCompare(b.name);
-              } else {
-                return b.name.localeCompare(a.name);
-              }
-            case Order.ABV:
-              if (this.selection.ascendent) {
-                return a.abv - b.abv;
-              } else {
-                return b.abv - a.abv;
-              }
-          }
-          return 0;
-        });
-
-  }
-
+  
   handleChange(selection: any) {
     this.selection = selection;
-    this.getFilteredBeers();
+    // this.getFilteredBeers();
   }
 
 
