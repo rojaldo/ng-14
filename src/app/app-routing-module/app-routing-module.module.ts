@@ -7,6 +7,7 @@ import { ErrorComponent } from '../components/error/error.component';
 import { ReactiveFormComponent } from '../components/forms/reactive-form/reactive-form.component';
 import { TemplateFormComponent } from '../components/forms/template-form/template-form.component';
 import { HeroesComponent } from '../components/heroes/heroes/heroes.component';
+import { LoginComponent } from '../components/login/login.component';
 import { MyGuard } from '../guards/my-guard.guard';
 
 const routes: Routes = [
@@ -14,8 +15,9 @@ const routes: Routes = [
     { path: 'heroes', component: HeroesComponent, canActivate: [MyGuard], },
     { path: 'apod', component: ApodComponent },
     { path: 'beers', component: BeersComponent },
-    { path: 'forms/:id', component: ReactiveFormComponent },
-    { path: '', redirectTo: '/beers', pathMatch: 'full' },
+    { path: 'forms', component: ReactiveFormComponent },
+    { path: 'login', component: LoginComponent },
+    { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: '**', component: ErrorComponent }
 ]; // sets up routes constant where you define your routes
 

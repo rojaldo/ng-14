@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuthenticateService } from '../services/authenticate.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,9 +11,9 @@ export class MyGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
 
-    return false;
+    return this.service.isLoggedIn();
   }
 
-  constructor() { }
+  constructor(private service: AuthenticateService) { }
   
 }
