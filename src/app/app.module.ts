@@ -7,7 +7,7 @@ import { DisplayComponent } from './components/calculator/display/display.compon
 import { KeyboardComponent } from './components/calculator/keyboard/keyboard.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HeroesComponent } from './components/heroes/heroes/heroes.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeroesListComponent } from './components/heroes/heroes-list/heroes-list.component';
 import { HeroFormComponent } from './components/heroes/hero-form/hero-form.component';
 import { CalculatorService } from './services/calculator.service';
@@ -22,6 +22,9 @@ import { BeersSelectorComponent } from './components/beers/beers-selector/beers-
 import { BeersPipe } from './pipes/beers.pipe';
 import { AbvPipe } from './pipes/abv.pipe';
 import { TemplateFormComponent } from './components/forms/template-form/template-form.component';
+import { ReactiveFormComponent } from './components/forms/reactive-form/reactive-form.component';
+import { AppRoutingModule } from './app-routing-module/app-routing-module.module';
+import { ErrorComponent } from './components/error/error.component';
 
 
 
@@ -40,15 +43,19 @@ import { TemplateFormComponent } from './components/forms/template-form/template
     BeersSelectorComponent,
     BeersPipe,
     AbvPipe,
-    TemplateFormComponent
+    TemplateFormComponent,
+    ReactiveFormComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     YouTubePlayerModule,
-    NgxSliderModule
+    NgxSliderModule,
+    AppRoutingModule
   ],
   providers: [CalculatorService, HeroesService],
   bootstrap: [AppComponent]
