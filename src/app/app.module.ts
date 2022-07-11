@@ -21,6 +21,7 @@ import { BeersListComponent } from './components/beers/beers-list/beers-list.com
 import { BeersSelectorComponent } from './components/beers/beers-selector/beers-selector.component';
 import { BeersPipe } from './pipes/beers.pipe';
 import { AbvPipe } from './pipes/abv.pipe';
+import { TemplateFormComponent } from './components/forms/template-form/template-form.component';
 
 
 
@@ -38,7 +39,8 @@ import { AbvPipe } from './pipes/abv.pipe';
     BeersListComponent,
     BeersSelectorComponent,
     BeersPipe,
-    AbvPipe
+    AbvPipe,
+    TemplateFormComponent
   ],
   imports: [
     BrowserModule,
