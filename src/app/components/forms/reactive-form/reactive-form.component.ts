@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CountryService } from 'src/app/services/country.service';
 
 @Component({
   selector: 'app-reactive-form',
@@ -8,60 +9,52 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./reactive-form.component.scss']
 })
 export class ReactiveFormComponent implements OnInit {
-  
+
   myValidator(control: any) {
-    console.log('myValidator');
-    
-    if (control.value === 'test') {
-      return {error: 'error'};
+    // cheack if the control.value lowercase is in countries
+    if (control.value !== null) {
+      if (this.countries.indexOf(control.value.toLowerCase()) === -1) {
+        return { error: 'error' };
+      }
+      return null;
     }
     return null;
   }
 
+  countries: string[] = [];
 
-  profileForm = this.fb.group({
-  firstName: ['', this.myValidator],
-    lastName: [''],
-    address: this.fb.group({
-      street: [''],
-      city: [''],
-      state: [''],
-      zip: ['']
-    }),
-    aliases: this.fb.array([
-      this.fb.control('')
-    ])
+  namePattern = '^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]{3,10}$';
+  emailPattern = '^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$';
+  postalCodePattern = '^[0-9]{5}$';
+
+  heroForm = this.fb.group({
+    name: ['', [Validators.required, Validators.pattern(this.namePattern)]],
+    description: [''],
+    email: ['', [Validators.required, Validators.pattern(this.emailPattern)]],
+    postalCode: ['', [Validators.required, Validators.pattern(this.postalCodePattern)]],
+    country: ['', [Validators.required, (control: any) => this.myValidator(control)]],
   });
 
-  get aliases() {
-    return this.profileForm.get('aliases') as FormArray;
-  }
+
 
   constructor(private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private service: CountryService) { }
 
   ngOnInit(): void {
     console.log('reactiveForm init');
     console.log(this.route.snapshot.paramMap.get('id'));
-    
-
-  }
-
-  updateProfile() {
-    this.profileForm.patchValue({
-      firstName: 'Nancy',
-      address: {
-        street: '123 Drew Street'
-      }
+    this.service.countries$.subscribe(myCountries => {
+      this.countries = myCountries;
     });
+    this.service.getCountries()
+
   }
-  addAlias() {
-    this.aliases.push(this.fb.control(''));
-  }
+
   onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.log(this.profileForm.value);
+    console.log(this.heroForm.value);
+    this.heroForm.reset();
   }
 
 }

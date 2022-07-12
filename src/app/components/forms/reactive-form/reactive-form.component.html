@@ -1,23 +1,56 @@
-<div class="container">
-    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
-        <label>First Name:
-            <input type="text" formControlName="firstName">
-        </label>
-        <label>Last Name:
-            <input type="text" formControlName="lastName">
-        </label>
-
-        <div formArrayName="aliases">
-            <h3>Aliases</h3> <button (click)="addAlias()">Add Alias</button>
-            <div *ngFor="let alias of aliases.controls; let i=index">
-                <!-- The repeated alias template -->
-                <label>
-                    Alias:
-                    <input type="text" [formControlName]="i">
-                </label>
+<div class="container" *ngIf="countries.length > 0">
+    <form [formGroup]="heroForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="">Name *</label>
+            <input type="text" class="form-control" name="name" id="name" aria-describedby="helpId"
+                placeholder="hero name" formControlName="name">
+            <div [hidden]="heroForm.get('name')?.valid || heroForm.get('name')?.value === ''"
+                class="alert alert-danger">
+                Name is required
             </div>
         </div>
-        <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+        <div class="form-group">
+            <label for="">Description</label>
+            <input type="text" class="form-control" name="description" id="description" aria-describedby="helpId"
+                placeholder="hero description" formControlName="description">
+        </div>
+        <div class="form-group">
+            <label for="">Email *</label>
+            <input type="text" class="form-control" name="email" id="email" aria-describedby="helpId"
+                placeholder="hero email" formControlName="email">
+            <div [hidden]="heroForm.get('email')?.valid || heroForm.get('email')?.value === ''"
+                class="alert alert-danger">
+                Valid email is required
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="">Postal Code *</label>
+            <input type="text" class="form-control" name="postalCode" id="postalCode" aria-describedby="helpId"
+                placeholder="hero postal code" formControlName="postalCode">
+            <div [hidden]="heroForm.get('postalCode')?.valid || heroForm.get('postalCode')?.value === ''"
+                class="alert alert-danger">
+                Valid postal code is required
+            </div>
+
+        </div>
+        <div class="form-group">
+            <label for="">Country *</label>
+            <input type="text" class="form-control" name="country" id="country" aria-describedby="helpId"
+                placeholder="hero country" formControlName="country">
+        </div>
+        <div [hidden]="heroForm.get('country')?.valid || heroForm.get('country')?.value === ''"
+            class="alert alert-danger">
+            Valid country is required
+        </div>
+
+        <button class="btn btn-success mt-4" type="submit" [disabled]="!heroForm.valid">Submit</button>
+
     </form>
 
+</div>
+
+<div class="container d-flex" *ngIf="countries.length === 0">
+    <div class="spinner-border mx-auto" role="status">
+        <span class="sr-only">Loading...</span>
+    </div>
 </div>
