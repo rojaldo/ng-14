@@ -23,7 +23,7 @@ import { BeersPipe } from './pipes/beers.pipe';
 import { AbvPipe } from './pipes/abv.pipe';
 import { TemplateFormComponent } from './components/forms/template-form/template-form.component';
 import { ReactiveFormComponent } from './components/forms/reactive-form/reactive-form.component';
-import { AppRoutingModule } from './app-routing-module/app-routing-module.module';
+import { AppRoutingModule } from './app-routing/app-routing.module';
 import { ErrorComponent } from './components/error/error.component';
 import { LoginComponent } from './components/login/login.component';
 
@@ -38,7 +38,6 @@ import { LoginComponent } from './components/login/login.component';
     HeroesComponent,
     HeroesListComponent,
     HeroFormComponent,
-    ApodComponent,
     BeersComponent,
     BeersListComponent,
     BeersSelectorComponent,
