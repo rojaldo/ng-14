@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, filter, from } from 'rxjs';
 
 enum State {
   INIT,
@@ -20,7 +20,7 @@ export class CalculatorService {
 
   display$ = new BehaviorSubject<string>(this.display);
 
-  constructor() { }
+  constructor() {  }
 
   process(value: any) {
     if (typeof value === 'number') {

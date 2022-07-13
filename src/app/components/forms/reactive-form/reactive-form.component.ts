@@ -38,16 +38,12 @@ export class ReactiveFormComponent implements OnInit {
 
 
   constructor(private fb: FormBuilder,
-    private router: Router,
-    private route: ActivatedRoute,
+
     private service: CountryService) { }
 
   ngOnInit(): void {
     console.log('reactiveForm init');
-    console.log(this.route.snapshot.paramMap.get('id'));
-    this.service.countries$.subscribe(myCountries => {
-      this.countries = myCountries;
-    });
+
     this.service.getCountries()
 
   }

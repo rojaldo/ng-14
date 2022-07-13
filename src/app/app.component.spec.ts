@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
@@ -7,6 +8,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      imports: [AppRoutingModule]
     }).compileComponents();
   });
 
@@ -19,10 +21,10 @@ describe('AppComponent', () => {
   it(`should have as title 'ng14'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('ng14');
+    expect(app.active).toEqual(5);
   });
 
-  it('should render title', () => {
+  xit('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
