@@ -9,13 +9,16 @@ export class HeroesService {
 
   heroes$ = new BehaviorSubject<Hero[]>(this.cloneHeroes());
 
-  constructor() { }
+  constructor() {
+  }
 
   addHero(hero: Hero) {
-    if (hero.name.length > 0) {
-      this._heroes.push(hero);
+    if (hero !== null && hero !== undefined && hero instanceof Hero) {
+      if (hero.name.length > 0) {
+        this._heroes.push(hero);
+      }
+      this.heroes$.next(this.cloneHeroes());
     }
-    this.heroes$.next(this.cloneHeroes());
   }
 
   removeHero(index: number) {
@@ -28,7 +31,7 @@ export class HeroesService {
   }
 
   cloneHeroes() {
-    let res:Hero[] = [];
+    let res: Hero[] = [];
     for (const hero of this._heroes) {
       res.push(hero.clone());
     }
