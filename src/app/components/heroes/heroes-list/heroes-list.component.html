@@ -1,7 +1,7 @@
 <ul class="list-group mt-4">
     <li class="list-group-item" *ngFor="let hero of heroesList; let i=index">
-        <b>{{hero.name}}</b><br>
-        <p>{{hero.description}}</p>
-        <button type="button" class="btn btn-danger" (click)="removeHero(i)">Remove Hero</button>
+        <b [id]="'label_hero_name_' + i">{{hero.name}}</b><br>
+        <p [id]="'label_hero_description_' + i">{{hero.description}}</p>
+        <button type="button" [id]="'btn_remove_hero_' + i" class="btn btn-danger" (click)="removeHero(i)">Remove Hero</button>
     </li>
 </ul>
