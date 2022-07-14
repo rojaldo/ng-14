@@ -12,7 +12,7 @@ import { MyGuard } from '../guards/my-guard.guard';
 
 const routes: Routes = [
     { path: 'calculator', component: CalculatorComponent },
-    { path: 'heroes', component: HeroesComponent, canActivate: [MyGuard], },
+    { path: 'heroes', component: HeroesComponent },
     { path: 'apod', loadChildren: () => import('../apod-route/apod.module').then(m => m.ApodModule) },
     { path: 'beers', component: BeersComponent },
     { path: 'forms', component: ReactiveFormComponent },
