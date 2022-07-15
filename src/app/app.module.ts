@@ -26,6 +26,7 @@ import { ReactiveFormComponent } from './components/forms/reactive-form/reactive
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { ErrorComponent } from './components/error/error.component';
 import { LoginComponent } from './components/login/login.component';
+import { TrivialComponent } from './components/trivial/trivial/trivial.component';
 
 
 
@@ -46,7 +47,8 @@ import { LoginComponent } from './components/login/login.component';
     TemplateFormComponent,
     ReactiveFormComponent,
     ErrorComponent,
-    LoginComponent
+    LoginComponent,
+    TrivialComponent
   ],
   imports: [
     BrowserModule,
