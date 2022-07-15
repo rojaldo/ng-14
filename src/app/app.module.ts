@@ -27,6 +27,7 @@ import { AppRoutingModule } from './app-routing/app-routing.module';
 import { ErrorComponent } from './components/error/error.component';
 import { LoginComponent } from './components/login/login.component';
 import { TrivialComponent } from './components/trivial/trivial/trivial.component';
+import { TrivialCardComponent } from './components/trivial/trivial-card/trivial-card.component';
 
 
 
@@ -48,7 +49,8 @@ import { TrivialComponent } from './components/trivial/trivial/trivial.component
     ReactiveFormComponent,
     ErrorComponent,
     LoginComponent,
-    TrivialComponent
+    TrivialComponent,
+    TrivialCardComponent
   ],
   imports: [
     BrowserModule,

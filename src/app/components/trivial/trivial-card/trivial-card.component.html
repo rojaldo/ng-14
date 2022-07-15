@@ -1,0 +1,10 @@
+<div class="card h-100">
+    <div class="card-body">
+        <h4 class="card-title">{{cardInfo?.question}}</h4>
+    </div>
+    <div class="card-footer text-muted" style="background-color: white;">
+        <div class="d-grid gap-2">
+            <button [class]="btnClasses[i]" type="button" *ngFor="let answer of cardInfo?.answers; let i=index" (click)="handleAnswer(answer, i)" [disabled]="cardInfo.answered">{{answer}}</button>
+        </div>
+    </div>
+</div>

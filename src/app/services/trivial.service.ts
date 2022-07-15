@@ -14,25 +14,27 @@ export class TrivialService {
   constructor(private http: HttpClient) { }
 
   get cards(): Card[] {
-    return [...this._cards];
+    return this._cards;
   }
 
   getTrivial() {
-    const observable = {
-      next: (data: any) => {
-        for (const jsonCard of data.results) {
-          const card = new Card(jsonCard);
-          this._cards.push(card);
+    if (this._cards.length === 0) {
+      const observable = {
+        next: (data: any) => {
+          for (const jsonCard of data.results) {
+            const card = new Card(jsonCard);
+            this._cards.push(card);
+          }
+          this.cards$.next(this.cards)
+        },
+        error: (err: any) => {
+          console.log(err);
+        },
+        complete: () => {
+          console.log('complete');
         }
-        this.cards$.next(this.cards)
-      },
-      error: (err: any) => {
-        console.log(err);
-      },
-      complete: () => {
-        console.log('complete');
       }
+      this.http.get('https://opentdb.com/api.php?amount=10').subscribe(observable);
     }
-    this.http.get('https://opentdb.com/api.php?amount=10').subscribe(observable);
   }
 }
