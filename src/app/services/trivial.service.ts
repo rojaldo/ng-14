@@ -9,12 +9,21 @@ import { Card } from '../models/card';
 export class TrivialService {
 
   private _cards: Card[] = [];
+  private _points = 0;
   cards$: BehaviorSubject<Card[]> = new BehaviorSubject(this._cards);
 
   constructor(private http: HttpClient) { }
 
   get cards(): Card[] {
     return this._cards;
+  }
+
+  get points(): number {
+    return this._points;
+  }
+
+  set points(value: number) {
+    this._points = value;
   }
 
   getTrivial() {

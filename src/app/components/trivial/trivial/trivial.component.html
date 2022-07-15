@@ -1,7 +1,8 @@
 <div class="container">
+    <h3>{{points}}</h3>
     <div class="row mt-5">
         <div class="col-sm-12 col-md-6 col-lg-4 mb-3" *ngFor="let card of cards; let i=index">
-            <app-trivial-card [cardInfo]="card"></app-trivial-card>
+            <app-trivial-card [cardInfo]="card" (onAnswer)="handleAnswer($event)"></app-trivial-card>
         </div>
     </div>
 

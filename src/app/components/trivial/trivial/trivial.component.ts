@@ -10,6 +10,7 @@ import { TrivialService } from 'src/app/services/trivial.service';
 export class TrivialComponent implements OnInit {
 
   cards: Card[] = [];
+  points = 0;
 
   constructor(private service: TrivialService) { }
 
@@ -18,6 +19,16 @@ export class TrivialComponent implements OnInit {
       this.cards = cards;
     });
     this.service.getTrivial();
+    this.points = this.service.points;
+  }
+
+  handleAnswer(rightAnswered: boolean) {
+    if(rightAnswered) {
+      this.points += 2;
+    }else {
+      this.points--;
+    }
+    this.service.points = this.points;
   }
 
 }

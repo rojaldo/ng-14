@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Card } from 'src/app/models/card';
 
 @Component({
@@ -9,6 +9,7 @@ import { Card } from 'src/app/models/card';
 export class TrivialCardComponent implements OnInit {
 
   @Input() cardInfo!: Card;
+  @Output() onAnswer = new EventEmitter<boolean>();
 
   btnClasses: string[] = ['btn btn-primary', 'btn btn-primary', 'btn btn-primary', 'btn btn-primary'];
 
@@ -25,6 +26,7 @@ export class TrivialCardComponent implements OnInit {
 
   handleAnswer(answer: string, index: number) {
     this.cardInfo.response(answer, index);
+    this.onAnswer.emit(this.cardInfo.rightAnswered);
     console.log('getClass()');
     this.btnClasses = [];
     for (let myAnswer of this.cardInfo.answers) {
