@@ -27,7 +27,7 @@
         <div class="numbers">
           <div (click)="handleClick('.')">.</div>
           <div (click)="handleClick(0)">0</div>
-          <div id="clear">C</div>
+          <div id="clear" (click)="handleClick('C')">C</div>
         </div>
       </div>
       <div class="equal" id="result" (click)="handleClick('=')">=</div>
