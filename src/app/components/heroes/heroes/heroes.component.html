@@ -7,8 +7,7 @@
         <label for="">Hero Description</label>
         <input type="text" name="" id="" class="form-control" placeholder="" aria-describedby="helpId" [(ngModel)]="heroDescription">
       </div>
-      <button type="button" class="btn btn-primary mt-2" (click)="addHero()" *ngIf="heroName !== ''">Add Hero</button>
-      <button type="button" class="btn btn-primary mt-2" (click)="addHero()" *ngIf="heroName === ''" disabled>Add Hero</button>
+      <button type="button" class="btn btn-primary mt-2" (click)="addHero()" [disabled]="heroName === ''">Add Hero</button>
     <hr/>
     <ul class="list-group">
         <li class="list-group-item" *ngFor="let hero of heroes"><b>{{hero.name}}</b><p>{{hero.description}}</p></li>
