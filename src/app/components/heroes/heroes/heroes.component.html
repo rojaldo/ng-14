@@ -10,7 +10,11 @@
       <button type="button" class="btn btn-primary mt-2" (click)="addHero()" [disabled]="heroName === ''">Add Hero</button>
     <hr/>
     <ul class="list-group">
-        <li class="list-group-item" *ngFor="let hero of heroes"><b>{{hero.name}}</b><p>{{hero.description}}</p></li>
+        <li class="list-group-item" *ngFor="let hero of heroes; let i=index">
+            <b>{{hero.name}}</b>
+            <p>{{hero.description}}</p>
+            <button type="button" class="btn btn-danger" (click)="removeHero(i)">Remove Hero</button>
+        </li>
     </ul>
         
 </div>
