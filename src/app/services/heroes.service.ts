@@ -13,7 +13,8 @@ export class HeroesService {
   constructor() { }
 
   get heroes() {
-    return this._heroes;
+    // return a copy of the array
+    return [...this._heroes];
   }
 
   get heroName() {
@@ -33,14 +34,18 @@ export class HeroesService {
   }
 
   addHero(heroName = '', heroDescription = '') {
+    console.log(heroName, heroDescription);
+    
     if (heroName !== '') {
-      this.heroes.push(new Hero(heroName, heroDescription));
+      this._heroes = [...this.heroes, new Hero(heroName, heroDescription)];
+      console.log('heroes: ' + JSON.stringify(this.heroes));
+      
     }
     console.error('Hero name is empty');
     
   }
 
   removeHero(index: number) {
-    this.heroes.splice(index, 1);
+    this._heroes.splice(index, 1);
   }
 }
