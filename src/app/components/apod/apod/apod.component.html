@@ -1,14 +1,25 @@
 <div class="container">
+    <form class="row row-cols-sm-auto">
+        <div class="col-12">
+            <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="selectedDate" ngbDatepicker
+                    #d="ngbDatepicker" (dateSelect)="onDateSelect($event)" />
+                <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button"></button>
+            </div>
+        </div>
+    </form>
     <div class="jumbotron">
         <h1 class="display-3">{{apodData.title}}</h1>
         <p class="lead">{{apodData.date}}</p>
         <div class="container-fluid d-flex">
-            <img [src]="apodData.url" alt="" class="mx-auto">            
+            <img [src]="apodData.url" alt="" class="mx-auto" *ngIf="apodData.isImage()">
+            <youtube-player [videoId]="apodData.videoID" *ngIf="apodData.isVideo()" class="mx-auto">
+            </youtube-player>
         </div>
         <hr class="my-2">
         <p>{{apodData.explanation}}</p>
         <p class="lead">
             <a class="btn btn-primary btn-lg" [href]="apodData.hdurl" role="button">HD Image</a>
         </p>
-    </div>    
+    </div>
 </div>

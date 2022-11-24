@@ -16,7 +16,12 @@ export class ApodService {
     return {...this._data};
   }
 
-  getApod() {
+  getApod(date?: string) {
+    const apiKey = 'DEMO_KEY';
+    let url = 'https://api.nasa.gov/planetary/apod?api_key=' + apiKey;
+    if (date) {
+      url += `&date=${date}`;
+    }
     const oberser = {
       next: (data: any) => { 
         this._data = data; 
@@ -25,7 +30,7 @@ export class ApodService {
       error: (err: any) => console.error(err),
       complete: () => console.log('complete')
     }
-    this.http.get('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY').subscribe(oberser);
+    this.http.get(url).subscribe(oberser);
     
   }
 }
