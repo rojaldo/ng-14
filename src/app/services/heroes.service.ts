@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Hero } from '../models/hero';
 
 @Injectable({
@@ -7,6 +8,7 @@ import { Hero } from '../models/hero';
 export class HeroesService {
 
   private _heroes: Hero[] = [new Hero('Batman', 'Dark knight'), new Hero('Superman'), new Hero('Spiderman')];
+  heroes$ = new BehaviorSubject<Hero[]>(this.heroes);
   private _heroName = '';
   private _heroDescription = '';
 
@@ -34,12 +36,9 @@ export class HeroesService {
   }
 
   addHero(heroName = '', heroDescription = '') {
-    console.log(heroName, heroDescription);
-    
     if (heroName !== '') {
       this._heroes = [...this.heroes, new Hero(heroName, heroDescription)];
-      console.log('heroes: ' + JSON.stringify(this.heroes));
-      
+      this.heroes$.next(this.heroes);      
     }
     console.error('Hero name is empty');
     
@@ -47,5 +46,6 @@ export class HeroesService {
 
   removeHero(index: number) {
     this._heroes.splice(index, 1);
+    this.heroes$.next(this.heroes);
   }
 }

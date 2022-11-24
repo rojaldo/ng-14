@@ -13,6 +13,7 @@ export class CalculatorComponent implements OnInit, OnDestroy {
   constructor(private service: CalculatorService) { }
 
   ngOnInit(): void {
+    this.service.display$.subscribe(display => this.display = display);
     console.log('CalculatorComponent.ngOnInit()');
     this.display = this.service.display;
   }
@@ -24,12 +25,12 @@ export class CalculatorComponent implements OnInit, OnDestroy {
 
   handleClick(value: number | string) {    
     if (typeof value === 'number') {
-      this.display = this.service.handleNumber(value);
+      this.service.handleNumber(value);
     } else if (typeof value === 'string') {
       if (value === 'C') {
-        this.display = this.service.initCalculator();
+        this.service.initCalculator();
       } else {
-        this.display = this.service.handleString(value);
+        this.service.handleString(value);
       }
     }
   }

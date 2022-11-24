@@ -10,6 +10,8 @@ import { KeyboardComponent } from './components/calculator/keyboard/keyboard.com
 import { HeroesComponent } from './components/heroes/heroes/heroes.component';
 import { HeroFormComponent } from './components/heroes/hero-form/hero-form.component';
 import { HeroesListComponent } from './components/heroes/heroes-list/heroes-list.component';
+import { ApodComponent } from './components/apod/apod/apod.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,12 +21,14 @@ import { HeroesListComponent } from './components/heroes/heroes-list/heroes-list
     KeyboardComponent,
     HeroesComponent,
     HeroFormComponent,
-    HeroesListComponent
+    HeroesListComponent,
+    ApodComponent
   ],
   imports: [
     BrowserModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
