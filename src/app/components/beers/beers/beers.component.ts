@@ -11,9 +11,10 @@ import { BeersService } from 'src/app/services/beers.service';
 export class BeersComponent implements OnInit {
 
   beers: Beer[] = [];
+  showBeers: Beer[] = [];
 
-  value: number = 40;
-  highValue: number = 60;
+  value: number = 4;
+  highValue: number = 6;
   options: Options = {
     floor: 0,
     ceil: 100
@@ -22,8 +23,19 @@ export class BeersComponent implements OnInit {
   constructor(private service: BeersService) { }
 
   ngOnInit(): void {
-    this.service.beers$.subscribe(data => this.beers = data);
+    this.service.beers$.subscribe(data => {
+      this.beers = data
+      this.handleSlider();
+    });
     this.service.getBeers();
+  }
+
+  handleSlider() {
+    console.log('handleSlider');
+    
+    this.showBeers = this.beers.filter(beer => {
+      return beer.abv >= this.value && beer.abv <= this.highValue;
+    });
   }
 
 }
