@@ -30,9 +30,7 @@ export class BeersComponent implements OnInit {
     this.service.getBeers();
   }
 
-  handleSlider() {
-    console.log('handleSlider');
-    
+  handleSlider() {    
     this.showBeers = this.beers.filter(beer => {
       return beer.abv >= this.value && beer.abv <= this.highValue;
     });
