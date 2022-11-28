@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { ApodPickerComponent } from './components/apod/apod-picker/apod-picker.component';
 import { ApodContentComponent } from './components/apod/apod-content/apod-content.component';
+import { BeersComponent } from './components/beers/beers/beers.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ApodContentComponent } from './components/apod/apod-content/apod-conten
     HeroesListComponent,
     ApodComponent,
     ApodPickerComponent,
-    ApodContentComponent
+    ApodContentComponent,
+    BeersComponent
   ],
   imports: [
     BrowserModule,
