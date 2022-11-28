@@ -16,6 +16,7 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
 import { ApodPickerComponent } from './components/apod/apod-picker/apod-picker.component';
 import { ApodContentComponent } from './components/apod/apod-content/apod-content.component';
 import { BeersComponent } from './components/beers/beers/beers.component';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { BeersComponent } from './components/beers/beers/beers.component';
     NgbModule,
     FormsModule,
     HttpClientModule,
-    YouTubePlayerModule
+    YouTubePlayerModule,
+    NgxSliderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
