@@ -11,10 +11,10 @@ import { ApodService } from 'src/app/services/apod.service';
 export class ApodComponent implements OnInit {
 
   apodData: Apod = new Apod();
-  selectedDate = this.calendar.getToday();
   private _apiLoaded = false;
+  currentDate: any = {}
 
-  constructor(private service: ApodService, private calendar: NgbCalendar) { }
+  constructor() { }
 
   ngOnInit(): void {
     if (!this._apiLoaded) {
@@ -23,14 +23,13 @@ export class ApodComponent implements OnInit {
       document.body.appendChild(tag);
       this._apiLoaded = true;
     }
-    this.service.data$.subscribe(data => this.apodData = new Apod(data));
-    this.service.getApod();
 
   }
 
-  onDateSelect(date: any) {
+  handleDate(date: any) {
     console.log(date);
-    this.service.getApod(date.year + '-' + date.month + '-' + date.day);
+    this.currentDate = date;
+    // this.service.getApod(date.year + '-' + date.month + '-' + date.day);
   }
 
 }

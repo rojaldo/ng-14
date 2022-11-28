@@ -18,10 +18,8 @@ export class Apod {
             this._serviceVersion = json.service_version;
             this._title = json.title;
             this._url = json.url;
-            console.log('is YT video: ' + this.isYTVideo());
             if (this.isYTVideo()) {
                 this._setVideoID();
-                console.log('video ID: ' + this.videoID);
             }            
         }
     }
