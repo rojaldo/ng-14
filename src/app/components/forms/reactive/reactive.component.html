@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="jumbotron">
+        <h2>Reactive Form</h2>
+        <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label>First Name:</label>
+                <input type="text" class="form-control" formControlName="firstName">
+                <div [hidden]="this.profileForm.get('firstName')?.valid || this.profileForm.get('firstName')?.pristine" class="alert alert-danger">First name is required
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" class="form-control" formControlName="lastName">
+                <div [hidden]="this.profileForm.get('lastName')?.valid || this.profileForm.get('lastName')?.pristine" class="alert alert-danger">Last name is required
+                </div> 
+            </div>
+            <!-- CONTINUA ... -->
+            <button type="submit" [disabled]="!profileForm.valid" class="btn btn-default btn-primary mt-3">Submit</button>
+        </form>
+    </div>
+</div>

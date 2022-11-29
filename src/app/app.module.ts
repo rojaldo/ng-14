@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -25,6 +25,7 @@ import { ApodService } from './services/apod.service';
 import { BeersService } from './services/beers.service';
 import { TemplateComponent } from './components/forms/template/template.component';
 import { CountriesComponent } from './components/countries/countries.component';
+import { ReactiveComponent } from './components/forms/reactive/reactive.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { CountriesComponent } from './components/countries/countries.component';
     AbvPipe,
     FilteredBeersPipe,
     TemplateComponent,
-    CountriesComponent
+    CountriesComponent,
+    ReactiveComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +52,8 @@ import { CountriesComponent } from './components/countries/countries.component';
     FormsModule,
     HttpClientModule,
     YouTubePlayerModule,
-    NgxSliderModule
+    NgxSliderModule,
+    ReactiveFormsModule
   ],
   providers: [HeroesService, ApodService, BeersService],
   bootstrap: [AppComponent]
