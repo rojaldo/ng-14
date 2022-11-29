@@ -1,30 +1,27 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { Beer } from '../models/beer';
 
-@Injectable()
-export class BeersService {
+@Injectable({
+  providedIn: 'root'
+})
+export class CountriesService {
 
-  _beers: Beer[] = []; 
-  beers$ = new BehaviorSubject<Beer[]>(this._beers);
+  countries: string[] = [];
+  countries$ = new BehaviorSubject<string[]>(this.countries);
 
   constructor(private http: HttpClient) { }
 
-  getBeers() {
-    const url = 'https://api.punkapi.com/v2/beers';
+  getCountries() {
+    const url = 'https://restcountries.com/v3.1/all';
     const observer = {
       next: (data: any) => {
-        this._beers = data.map((jsonBeer: any) => new Beer(jsonBeer));
-        this.beers$.next(this.beers);
+        this.countries = data.map((jsonCountry: any) => jsonCountry.translations.spa.common);
+        this.countries$.next(this.countries);
       },
       error: (err: any) => console.error(err),
       complete: () => console.log('complete')
     }
     this.http.get(url).subscribe(observer);
-  }
-
-  get beers() {
-    return [...this._beers];
   }
 }

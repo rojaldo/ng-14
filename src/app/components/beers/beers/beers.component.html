@@ -1,9 +1,9 @@
 <div class="container">
     <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options" ></ngx-slider>
     <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-4  mt-3" *ngFor="let beer of beers | filteredBeers: value: highValue">
+        <div [ngClass]="'col-sm-12 col-md-6 col-lg-4 mt-3'" *ngFor="let beer of beers | filteredBeers: value: highValue">
             <div class="card h-100">
-                <img class="card-img-top mx-auto mt-2" [src]="beer.imageUrl" [alt]="beer.name" style="width: 60px">
+                <img class="card-img-top mx-auto mt-2" [src]="beer.imageUrl" [alt]="beer.name" [ngStyle]="{width: '60px'}">
                 <div class="card-body">
                     <h4 class="card-title">{{beer.name}}</h4>
                     <p class="card-text">{{beer.tagline}}</p>

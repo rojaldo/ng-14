@@ -19,6 +19,12 @@ import { BeersComponent } from './components/beers/beers/beers.component';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { AbvPipe } from './pipes/abv.pipe';
 import { FilteredBeersPipe } from './pipes/filtered-beers.pipe';
+import { CalculatorService } from './services/calculator.service';
+import { HeroesService } from './services/heroes.service';
+import { ApodService } from './services/apod.service';
+import { BeersService } from './services/beers.service';
+import { TemplateComponent } from './components/forms/template/template.component';
+import { CountriesComponent } from './components/countries/countries.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +40,9 @@ import { FilteredBeersPipe } from './pipes/filtered-beers.pipe';
     ApodContentComponent,
     BeersComponent,
     AbvPipe,
-    FilteredBeersPipe
+    FilteredBeersPipe,
+    TemplateComponent,
+    CountriesComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +52,7 @@ import { FilteredBeersPipe } from './pipes/filtered-beers.pipe';
     YouTubePlayerModule,
     NgxSliderModule
   ],
-  providers: [],
+  providers: [HeroesService, ApodService, BeersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

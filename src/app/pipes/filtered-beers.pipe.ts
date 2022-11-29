@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { Beer } from '../models/beer';
 
 @Pipe({
-  name: 'filteredBeers'
+  name: 'filteredBeers',
+  pure: true
 })
 export class FilteredBeersPipe implements PipeTransform {
 
@@ -16,7 +17,7 @@ export class FilteredBeersPipe implements PipeTransform {
       // return error
     }
     console.error('filteredBeers pipe needs 2 arguments');
-    return [];
+    return value;
   }
 
 }

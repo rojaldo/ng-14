@@ -8,9 +8,7 @@ enum State {
   result
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 
 export class CalculatorService {
 

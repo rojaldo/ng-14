@@ -23,6 +23,18 @@
 			<app-beers></app-beers>
 		</ng-template>
 	</li>
+	<li [ngbNavItem]="5">
+		<a ngbNavLink>Forms</a>
+		<ng-template ngbNavContent>
+			<app-template></app-template>
+		</ng-template>
+	</li>
+	<li [ngbNavItem]="6">
+		<a ngbNavLink>Countries</a>
+		<ng-template ngbNavContent>
+			<app-countries></app-countries>
+		</ng-template>
+	</li>
 </ul>
 
 <div [ngbNavOutlet]="nav" class="mt-2"></div>
