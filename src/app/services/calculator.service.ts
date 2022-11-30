@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { StorageService } from './storage.service';
 
 enum State {
   init,
@@ -21,10 +22,37 @@ export class CalculatorService {
 
   display$ = new BehaviorSubject<string>(this.display);
 
-  constructor() { }
+  constructor(private storage: StorageService) { }
 
   get display() {
     return this._display;
+  }
+
+  saveStorage(index: number) {
+    this.storage.saveStorage({
+      index,
+      display: this._display,
+      firstFigure: this._firstFugure,
+      secondFigure: this._secondFigure,
+      operator: this._operator,
+      result: this._result,
+      currentState: this._currentState
+    });
+  }
+
+  loadStorage(index: number) {
+    let myStorageArray = this.storage.store.filter((item) => item.index === index);
+    if (myStorageArray.length > 0) {
+      let storage = myStorageArray[0];
+      console.log(storage);
+      this._display = storage.display;
+      this._firstFugure = storage.firstFigure;
+      this._secondFigure = storage.secondFigure;
+      this._operator = storage.operator;
+      this._result = storage.result;
+      this._currentState = storage.currentState;
+      this.display$.next(this._display);
+    }
   }
 
   handleNumber(value: number) {

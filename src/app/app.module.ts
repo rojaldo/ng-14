@@ -26,6 +26,7 @@ import { BeersService } from './services/beers.service';
 import { TemplateComponent } from './components/forms/template/template.component';
 import { CountriesComponent } from './components/countries/countries.component';
 import { ReactiveComponent } from './components/forms/reactive/reactive.component';
+import { StorageService } from './services/storage.service';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,7 @@ import { ReactiveComponent } from './components/forms/reactive/reactive.componen
     NgxSliderModule,
     ReactiveFormsModule
   ],
-  providers: [HeroesService, ApodService, BeersService],
+  providers: [HeroesService, ApodService, BeersService, StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

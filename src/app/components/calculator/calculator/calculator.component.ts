@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { CalculatorService } from 'src/app/services/calculator.service';
 
 @Component({
@@ -9,6 +9,8 @@ import { CalculatorService } from 'src/app/services/calculator.service';
 })
 export class CalculatorComponent implements OnInit, OnDestroy {
 
+  @Input() index = 0;
+  
   display = '';
 
   constructor(private service: CalculatorService) { }
@@ -17,10 +19,12 @@ export class CalculatorComponent implements OnInit, OnDestroy {
     this.service.display$.subscribe(display => this.display = display);
     console.log('CalculatorComponent.ngOnInit()');
     this.display = this.service.display;
+    this.service.loadStorage(this.index);
   }
 
   ngOnDestroy(): void {
     console.log('CalculatorComponent.ngOnDestroy()');
+    this.service.saveStorage(this.index);
   }
 
 
