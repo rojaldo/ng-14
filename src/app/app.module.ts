@@ -27,36 +27,32 @@ import { TemplateComponent } from './components/forms/template/template.componen
 import { CountriesComponent } from './components/countries/countries.component';
 import { ReactiveComponent } from './components/forms/reactive/reactive.component';
 import { StorageService } from './services/storage.service';
+import { AppRoutingModule } from './modules/app-routing/app-routing.module';
+import { LoginComponent } from './components/login/login.component';
+import { ErrorComponent } from './components/error/error.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CalculatorComponent,
-    DisplayComponent,
-    KeyboardComponent,
-    HeroesComponent,
-    HeroFormComponent,
-    HeroesListComponent,
-    ApodComponent,
-    ApodPickerComponent,
-    ApodContentComponent,
     BeersComponent,
     AbvPipe,
     FilteredBeersPipe,
     TemplateComponent,
     CountriesComponent,
-    ReactiveComponent
+    ReactiveComponent,
+    LoginComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
-    NgbModule,
     FormsModule,
+    NgbModule,
     HttpClientModule,
-    YouTubePlayerModule,
     NgxSliderModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AppRoutingModule
   ],
-  providers: [HeroesService, ApodService, BeersService, StorageService],
+  providers: [HeroesService, BeersService, StorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
