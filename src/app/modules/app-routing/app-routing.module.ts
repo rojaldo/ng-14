@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'apod', loadChildren: () => import('../apod/apod.module').then(m => m.ApodModule) },
   { path: 'calculator', loadChildren: () => import('../calculator/calculator.module').then(m => m.CalculatorModule) },
   { path: 'heroes', loadChildren: () => import('../heroes/heroes.module').then(m => m.HeroesModule) },
+  { path: 'trivial', loadChildren: () => import('../trivial/trivial.module').then(m => m.TrivialModule) },
   { path: '**', redirectTo: '/error', pathMatch: 'full' },
 
 ]; // sets up routes constant where you define your routes

@@ -30,6 +30,7 @@ import { StorageService } from './services/storage.service';
 import { AppRoutingModule } from './modules/app-routing/app-routing.module';
 import { LoginComponent } from './components/login/login.component';
 import { ErrorComponent } from './components/error/error.component';
+import { TrivialComponent } from './components/trivial/trivial/trivial.component';
 
 @NgModule({
   declarations: [
