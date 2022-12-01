@@ -10,8 +10,14 @@ export class TrivialService {
 
   private _cards: Card[] = [];
   cards$ = new BehaviorSubject<Card[]>(this.cards);
+  private _score = 0;
+  score$ = new BehaviorSubject<number>(this.score);
 
   constructor(private http: HttpClient) { }
+
+  get score(): number {
+    return this._score;
+  }
 
   get cards(): Card[] {
     return [...this._cards];
@@ -44,5 +50,10 @@ export class TrivialService {
       complete: () => console.log('Complete'),
     }
     this.http.get(url).subscribe(observer);
+  }
+
+  addScore(score: number) {
+    this._score += score;
+    this.score$.next(this.score);
   }
 }

@@ -17,6 +17,14 @@ export class Card {
         this._correctAnswer = json.correct_answer;
         this._answers = json.incorrect_answers;
         this._answers.push(this._correctAnswer);
+        this.shuffle();
+    }
+
+    shuffle() {
+        for (let i = this._answers.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [this._answers[i], this._answers[j]] = [this._answers[j], this._answers[i]];
+        }
     }
 
     get category(): string {
