@@ -5,6 +5,9 @@ export class Card {
     private _question = '';
     private _correctAnswer = '';
     private _answers: string[] = [];
+    private _answered = false;
+    private _userAnswer: string | undefined = undefined;
+    private _rightAnswered = false;
 
     constructor(json: any) {
         this._category = json.category;
@@ -38,6 +41,30 @@ export class Card {
 
     get answers(): string[] {
         return this._answers;
+    }
+
+    get answered(): boolean {
+        return this._answered;
+    }
+
+    set answered(value: boolean) {
+        this._answered = value;
+    }
+
+    get userAnswer(): string | undefined {
+        return this._userAnswer;
+    }
+
+    set userAnswer(value: string | undefined) {
+        this._userAnswer = value;
+    }
+
+    get rightAnswered(): boolean {
+        return this._rightAnswered;
+    }
+
+    set rightAnswered(value: boolean) {
+        this._rightAnswered = value;
     }
 
 }

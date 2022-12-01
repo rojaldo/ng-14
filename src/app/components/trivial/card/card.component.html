@@ -1,0 +1,12 @@
+<div class="card h-100">
+    <div class="card-body" *ngIf="card; else elseTemplate">
+        <h5 class="card-title">{{card.question}}</h5>
+        <div class="d-grid gap-1">
+            <button [class]="classes[i]" type="button" *ngFor="let answer of card.answers; let i=index"
+                (click)="handleClick(answer, i)" [disabled]="card.answered">{{answer}}</button>
+        </div>
+    </div>
+    <ng-template #elseTemplate>
+        <h1>no data</h1>
+    </ng-template>
+</div>
