@@ -14,19 +14,19 @@ export class CardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.classes = this.card.answers.map((answer, index) => this.getClass(answer, index));
+    this.classes = this.card.answers.map((answer) => this.getClass(answer));
   }
 
-  handleClick(answer: string, index: number) {
+  handleClick(answer: string) {
     this.card.answered = true;
     this.card.userAnswer = answer;
     this.card.rightAnswered = this.card.correctAnswer === answer;
     for (let i = 0; i < this.classes.length; i++) {
-      this.classes[i] = this.getClass(this.card.answers[i], i);
+      this.classes[i] = this.getClass(this.card.answers[i]);
     }
   }
 
-  getClass(answer: string, index: number) {
+  getClass(answer: string) {
     console.log('getClass');
     
     if (this.card.answered) {
